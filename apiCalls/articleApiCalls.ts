@@ -1,6 +1,7 @@
 import {  SingleArticle } from './../utiles/type';
 import { Article } from "@/app/generated/prisma/client";
 import { domain } from "@/utiles/constantes";
+import { notFound } from 'next/navigation';
 
 
 //get all articles by pageNumber
@@ -30,6 +31,6 @@ export const getArticlesBySearch = async (searchText:string) : Promise<Article[]
  //get article by id
  export const getArticleById = async (articleId:string) : Promise<SingleArticle> => {
  const res = await fetch(`${domain}/api/articles/${articleId}`,{cache:"no-store"});
- if(!res.ok) throw new Error("Failed to fetch data");
+ if(!res.ok) notFound();
  return res.json();
  }
