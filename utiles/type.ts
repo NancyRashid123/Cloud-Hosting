@@ -1,0 +1,14 @@
+import { Article, Comment, User } from "@/app/generated/prisma/client";
+
+  export type TjwtPayload = {
+    id: number;
+    username: string;
+    isAdmin: boolean;
+  };
+
+  export type CommentWithUser = Comment & {
+    user: User;
+  };
+  export type SingleArticle = Article & {
+    comments: CommentWithUser[];
+  };
